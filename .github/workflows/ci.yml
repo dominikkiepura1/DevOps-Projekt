@@ -10,6 +10,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 1
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
@@ -32,8 +35,9 @@ jobs:
           name: test-results
           path: TestResults
 
-      - name: Publish test results to Checks
-        uses: EnricoMi/publish-unit-test-result-action@v2
+      - name: Test summary
         if: always()
-        with:
-          files: "TestResults/**/*.trx"
+        run: |
+          echo "## Test results" >> $GITHUB_STEP_SUMMARY
+          echo "TRX files in artifact: test-results" >> $GITHUB_STEP_SUMMARY
+          ls -R TestResults || true
