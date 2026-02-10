@@ -41,3 +41,7 @@ jobs:
           echo "## Test results" >> $GITHUB_STEP_SUMMARY
           echo "TRX files in artifact: test-results" >> $GITHUB_STEP_SUMMARY
           ls -R TestResults || true
+
+      - name: Docker build
+        run: docker build -t devopsprojekt-api .
+
