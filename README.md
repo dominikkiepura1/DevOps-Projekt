@@ -33,5 +33,12 @@ dotnet run --project DevOpsProjekt.Api
 
 ---
 
+## Docker
+
+Build:
+```bash
+docker build -t devopsprojekt-api .
+
+
 Adres aplikacji:
 https://devopsprojekt-kiepura-gydgbtgsbdcaerg6.francecentral-01.azurewebsites.net/
